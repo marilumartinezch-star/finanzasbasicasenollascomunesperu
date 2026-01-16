@@ -3,54 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma de Capacitación Junín</title>
+    <title>Proyecto Junín - Plataforma de Capacitación</title>
     <style>
         :root {
-            --rojo-principal: #8B0000;
+            --rojo-oscuro: #8B0000;
             --rojo-claro: #FF3232;
             --blanco: #FFFFFF;
-            --fondo: #F4F7F6;
+            --gris-fondo: #F8F9FA;
             --oscuro: #2D3436;
             --verde: #27AE60;
         }
 
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--fondo); color: #333; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--gris-fondo); color: var(--oscuro); }
 
         /* --- DASHBOARD PRINCIPAL --- */
-        #main-dashboard { animation: fadeIn 0.5s; padding-bottom: 50px; }
-        .hero { background: linear-gradient(135deg, var(--rojo-principal), var(--rojo-claro)); color: white; padding: 50px 20px; text-align: center; }
-        .motto { font-style: italic; opacity: 0.9; margin-top: 10px; display: block; font-size: 0.95rem; }
-        
-        .section-title { text-align: center; color: var(--rojo-principal); margin: 40px 0 20px; text-transform: uppercase; letter-spacing: 2px; }
-        .course-grid { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .course-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-left: 5px solid var(--rojo-claro); transition: 0.3s; cursor: pointer; }
-        .course-card:hover { transform: scale(1.03); box-shadow: 0 8px 20px rgba(139,0,0,0.2); }
-        .course-card h3 { margin: 0; color: var(--rojo-principal); font-size: 1.1rem; }
-        .course-card p { font-size: 0.85rem; color: #666; margin: 10px 0; }
-        .badge { background: #EEE; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+        header { background: linear-gradient(135deg, var(--rojo-oscuro), var(--rojo-claro)); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--rojo-claro); }
+        .motto { font-style: italic; opacity: 0.9; display: block; margin-top: 10px; font-size: 0.9rem; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .section-header { border-left: 5px solid var(--rojo-oscuro); padding-left: 15px; margin: 40px 0 20px; color: var(--rojo-oscuro); text-transform: uppercase; letter-spacing: 1px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s; cursor: pointer; border: 1px solid #eee; position: relative; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(139,0,0,0.15); border-color: var(--rojo-claro); }
+        .card h3 { margin: 0 0 10px 0; color: var(--rojo-oscuro); font-size: 1.1rem; }
+        .card p { font-size: 0.85rem; color: #636e72; line-height: 1.4; }
+        .card .sessions-count { font-size: 0.7rem; font-weight: bold; background: #f1f1f1; padding: 4px 8px; border-radius: 4px; color: var(--rojo-oscuro); }
 
         /* --- VISUALIZADOR DE CURSO --- */
-        #course-viewer { display: none; background: #fff; min-height: 100vh; }
-        .course-header { background: var(--oscuro); color: white; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; }
-        .btn-back { background: transparent; border: 1px solid white; color: white; padding: 8px 15px; cursor: pointer; border-radius: 4px; }
+        #course-viewer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; overflow-y: auto; }
+        .course-nav { background: var(--oscuro); color: white; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
+        .tabs { display: flex; background: #eee; border-bottom: 3px solid var(--rojo-claro); overflow-x: auto; }
+        .tab { padding: 15px 25px; cursor: pointer; font-weight: bold; font-size: 0.8rem; color: #555; white-space: nowrap; flex: 1; text-align: center; }
+        .tab.active { background: var(--rojo-claro); color: white; }
+
+        .session-body { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        .view { display: none; animation: fadeIn 0.3s; }
+        .view.active { display: block; }
+
+        .info-box { background: #FFF5F5; border-left: 6px solid var(--rojo-oscuro); padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .dinamica { background: var(--oscuro); color: white; padding: 30px; border-radius: 15px; margin-top: 30px; }
+        .dinamica h4 { color: var(--rojo-claro); margin-top: 0; border-bottom: 1px solid #444; padding-bottom: 10px; }
         
-        .session-nav { display: flex; background: #E9ECEF; overflow-x: auto; border-bottom: 3px solid var(--rojo-claro); sticky: top; top: 0; z-index: 10; }
-        .session-tab { padding: 15px 20px; cursor: pointer; font-weight: bold; color: var(--oscuro); flex: 1; text-align: center; min-width: 100px; font-size: 0.8rem; border-right: 1px solid #ddd; }
-        .session-tab.active { background: var(--rojo-claro); color: white; }
-
-        /* CONTENIDO */
-        .content-container { max-width: 900px; margin: 30px auto; padding: 0 20px; padding-bottom: 60px; }
-        .session-content { display: none; animation: fadeIn 0.4s; }
-        .session-content.active { display: block; }
-
-        .obj-card { background: #FFF9F9; border-left: 6px solid var(--rojo-claro); padding: 20px; border-radius: 8px; margin-bottom: 25px; }
-        .time-tag { float: right; background: var(--oscuro); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; }
-
-        /* Dinámica */
-        .dinamica-box { background: var(--oscuro); color: white; padding: 30px; border-radius: 15px; margin-top: 30px; }
-        .dinamica-box h3 { color: var(--rojo-claro); margin-top: 0; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 6px; border: none; font-size: 1rem; }
-        .btn-check { background: var(--rojo-claro); color: white; border: none; padding: 15px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        input, select { width: 100%; padding: 12px; margin: 15px 0; border-radius: 6px; border: none; font-size: 1rem; }
+        .btn-check { background: var(--rojo-claro); color: white; border: none; padding: 15px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; }
         .feedback { margin-top: 15px; padding: 15px; border-radius: 8px; display: none; text-align: center; font-weight: bold; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -58,188 +54,200 @@
 </head>
 <body>
 
-<div id="main-dashboard">
-    <header class="hero">
-        <h1>SISTEMA DE CAPACITACIÓN - JUNÍN 2026</h1>
+<div id="dashboard">
+    <header>
+        <h1>PROYECTO JUNÍN: GESTIÓN Y FORMACIÓN</h1>
         <span class="motto">"Cosechando libertad, sembrando estabilidad"</span>
     </header>
 
-    <h2 class="section-title">Gestión de Ollas Comunes</h2>
-    <div class="course-grid">
-        <div class="course-card" onclick="loadCourse('finanzas')">
-            <h3>Finanzas Básicas</h3>
-            <p>Cuadre de caja, presupuestos y ahorro estratégico.</p>
-            <span class="badge">5 SESIONES</span>
+    <div class="container">
+        <h2 class="section-header">Cursos Académicos y Sociales</h2>
+        <div class="grid">
+            <div class="card" onclick="openCourse('finanzas')">
+                <h3>Finanzas Básicas</h3>
+                <p>Gestión de ingresos, egresos y ahorro para ollas comunes de la región.</p>
+                <span class="sessions-count">1 INTRO + 4 SESIONES</span>
+            </div>
+            <div class="card" onclick="openCourse('admin')">
+                <h3>Administración de Ollas</h3>
+                <p>Organización de roles, equipos de trabajo y liderazgo comunitario.</p>
+                <span class="sessions-count">1 INTRO + 4 SESIONES</span>
+            </div>
+            <div class="card" onclick="openCourse('prevencion')">
+                <h3>Madres Adolescentes</h3>
+                <p>Capacitación integral para la prevención y el desarrollo personal.</p>
+                <span class="sessions-count">1 INTRO + 4 SESIONES</span>
+            </div>
+            <div class="card" onclick="openCourse('becas')">
+                <h3>Guía de Becas</h3>
+                <p>Explicación técnica de oportunidades y procesos de postulación.</p>
+                <span class="sessions-count">1 INTRO + 4 SESIONES</span>
+            </div>
+            <div class="card" onclick="openCourse('reforzamiento')">
+                <h3>Reforzamiento Académico</h3>
+                <p>Nivelación intensiva en razonamiento matemático y verbal.</p>
+                <span class="sessions-count">1 INTRO + 4 SESIONES</span>
+            </div>
         </div>
-        <div class="course-card" onclick="loadCourse('admin')">
-            <h3>Administración Líder</h3>
-            <p>Organización de equipos, liderazgo y roles sociales.</p>
-            <span class="badge">5 SESIONES</span>
-        </div>
-        <div class="course-card" onclick="loadCourse('tecno')">
-            <h3>Tecnología y Productividad</h3>
-            <p>Google Calendar, plataformas de gestión y herramientas.</p>
-            <span class="badge">5 SESIONES</span>
-        </div>
-        <div class="course-card" onclick="loadCourse('procesos')">
-            <h3>Procesos del Voluntariado</h3>
-            <p>Estandarización, logística y manual de operaciones.</p>
-            <span class="badge">5 SESIONES</span>
-        </div>
-    </div>
 
-    <h2 class="section-title">Apoyo a Madres Adolescentes</h2>
-    <div class="course-grid">
-        <div class="course-card" onclick="loadCourse('prevencion')">
-            <h3>Prevención y Empoderamiento</h3>
-            <p>Capacitación para el desarrollo personal y prevención.</p>
-            <span class="badge">5 SESIONES</span>
-        </div>
-        <div class="course-card" onclick="loadCourse('becas')">
-            <h3>Guía de Becas</h3>
-            <p>Cómo postular y ganar becas de estudio y formación.</p>
-            <span class="badge">5 SESIONES</span>
-        </div>
-        <div class="course-card" onclick="loadCourse('reforzamiento')">
-            <h3>Reforzamiento Académico</h3>
-            <p>Nivelación matemática y verbal para estudios superiores.</p>
-            <span class="badge">5 SESIONES</span>
+        <h2 class="section-header">Capacitaciones Técnicas</h2>
+        <div class="grid">
+            <div class="card" onclick="openCourse('tecnologia')">
+                <h3>Capacitación Tecnológica</h3>
+                <p>Uso de Calendar y plataformas básicas de gestión y productividad.</p>
+                <span class="sessions-count">1 INTRO + 4 SESIONES</span>
+            </div>
+            <div class="card" onclick="openCourse('procesos')">
+                <h3>Procesos del Voluntariado</h3>
+                <p>Manual de organización y procesos internos del voluntariado Junín.</p>
+                <span class="sessions-count">1 INTRO + 4 SESIONES</span>
+            </div>
         </div>
     </div>
 </div>
 
 <div id="course-viewer">
-    <div class="course-header">
-        <h2 id="course-title-display">Curso</h2>
-        <button class="btn-back" onclick="closeCourse()">Volver al Panel</button>
+    <div class="course-nav">
+        <h2 id="course-name">Nombre del Curso</h2>
+        <button class="btn-back" onclick="closeCourse()">Cerrar sesión</button>
     </div>
-    <div class="session-nav" id="tab-bar"></div>
-    <div class="content-container" id="content-display"></div>
+    <div class="tabs" id="tab-container"></div>
+    <div class="session-body" id="session-content"></div>
 </div>
 
 <script>
-const cursosDB = {
+const data = {
     finanzas: {
-        titulo: "Finanzas Básicas",
-        sesiones: [
-            { t:"Sesión 0: Intro", obj:"Presentación de la ruta financiera de 5 horas.", dyn:"¿Cuál es la regla de oro de la transparencia?", check:"honradez" },
-            { t:"Sesión 1: Registro", obj:"Control de ingresos y egresos diarios.", dyn:"Si entran S/ 50 y gastas S/ 30, ¿cuánto registras en saldo?", check:"20" },
-            { t:"Sesión 2: Presupuesto", obj:"Aprender a planificar la semana de compras.", dyn:"¿Comprar por saco ahorra dinero? (Si/No)", check:"si" },
-            { t:"Sesión 3: El Mercado", obj:"Negociación y proveedores mayoristas.", dyn:"Busca el precio del saco de arroz en Junín.", check:"ok" },
-            { t:"Sesión 4: Auditoría", obj:"Revisión de cuentas para asamblea.", dyn:"¿Quién revisa tus libros?", check:"socios" }
+        t: "Finanzas Básicas para Ollas Comunes",
+        s: [
+            { n: "S0: Intro", obj: "Reglas de convivencia financiera y presentación del curso.", dyn: "¿Cuál es el valor más importante al manejar dinero ajeno?", ans: "transparencia" },
+            { n: "S1: El Cuadre", obj: "Registro diario de ingresos y egresos.", dyn: "Inicias con S/30, recibes S/50 y gastas S/40. ¿Saldo?", ans: "40" },
+            { n: "S2: Presupuesto", obj: "Planificación de compras semanales.", dyn: "¿Es mejor comprar por kilo o por saco?", ans: "saco" },
+            { n: "S3: Transparencia", obj: "Rendición de cuentas ante la asamblea.", dyn: "¿Cada cuánto se debe informar a los socios?", ans: "diario" },
+            { n: "S4: El Ahorro", obj: "Fondo de emergencia para la olla común.", dyn: "Si ahorramos S/2 por día, ¿cuánto tenemos en 30 días?", ans: "60" }
         ]
     },
     admin: {
-        titulo: "Administración para Organizadoras",
-        sesiones: [
-            { t:"Sesión 0: Intro", obj:"Presentación del rol de administradora comunal.", dyn:"¿Qué es ser una líder?", check:"servir" },
-            { t:"Sesión 1: Roles", obj:"Organización de turnos y limpieza.", dyn:"Crea un horario de 3 personas.", check:"ok" },
-            { t:"Sesión 2: Comunicación", obj:"Cómo hablar con los socios y evitar conflictos.", dyn:"¿Es mejor gritar o escuchar?", check:"escuchar" },
-            { t:"Sesión 3: Productividad", obj:"Hacer más con menos tiempo.", dyn:"¿A qué hora empieza la gestión de la olla?", check:"temprano" },
-            { t:"Sesión 4: Delegación", obj:"Aprender a confiar tareas en otras socias.", dyn:"¿Puedes hacer todo sola?", check:"no" }
-        ]
-    },
-    tecno: {
-        titulo: "Tecnología y Productividad",
-        sesiones: [
-            { t:"Sesión 0: Intro", obj:"El celular como herramienta de trabajo.", dyn:"¿Qué app usaremos hoy?", check:"calendar" },
-            { t:"Sesión 1: Calendar", obj:"Agendar reuniones y recordatorios de pagos.", dyn:"Agende la asamblea de mañana a las 5pm.", check:"ok" },
-            { t:"Sesión 2: WhatsApp Biz", obj:"Atención a socios y proveedores profesional.", dyn:"Crea un mensaje de bienvenida.", check:"ok" },
-            { t:"Sesión 3: Drive/Nube", obj:"Guardar fotos de boletas para no perderlas.", dyn:"¿Para qué sirve la nube?", check:"guardar" },
-            { t:"Sesión 4: Plataformas", obj:"Uso de Zoom/Meet para capacitaciones.", dyn:"¿Cómo entras a una reunión virtual?", check:"link" }
-        ]
-    },
-    procesos: {
-        titulo: "Procesos del Voluntariado",
-        sesiones: [
-            { t:"Sesión 0: Intro", obj:"Presentación del manual de operaciones del voluntario.", dyn:"¿Por qué el orden es importante?", check:"eficiencia" },
-            { t:"Sesión 1: Almacén", obj:"Recepción de mercadería y pesado.", dyn:"¿Qué haces si el saco pesa menos de lo dicho?", check:"reclamar" },
-            { t:"Sesión 2: Calidad", obj:"Estandarización de raciones por plato.", dyn:"¿Cuántos gramos de arroz van por plato?", check:"ok" },
-            { t:"Sesión 3: Seguridad", obj:"Protocolos de higiene en cocina.", dyn:"¿Qué es lo primero que se lava?", check:"manos" },
-            { t:"Sesión 4: Reporte", obj:"Cómo enviar informes al voluntariado central.", dyn:"¿Cada cuánto se reporta?", check:"diario" }
+        t: "Administración para Organizadoras",
+        s: [
+            { n: "S0: Intro", obj: "Definición del liderazgo administrativo en Junín.", dyn: "¿Qué busca una buena administradora?", ans: "organizacion" },
+            { n: "S1: Roles", obj: "Distribución de tareas en la cocina y almacén.", dyn: "¿Es eficiente que una sola persona haga todo?", ans: "no" },
+            { n: "S2: Equipos", obj: "Motivación y trabajo con los socios.", dyn: "¿Cómo resuelves un conflicto? (Hablando/Gritando)", ans: "hablando" },
+            { n: "S3: Planificación", obj: "Uso de cronogramas de trabajo.", dyn: "¿Qué se debe hacer primero en la mañana?", ans: "planear" },
+            { n: "S4: Evaluación", obj: "Medir si la olla está funcionando bien.", dyn: "¿Qué indicador nos dice que vamos bien?", ans: "orden" }
         ]
     },
     prevencion: {
-        titulo: "Prevención y Empoderamiento",
-        sesiones: [
-            { t:"Sesión 0: Intro", obj:"Presentación de los derechos de la madre adolescente.", dyn:"¿Eres valiosa?", check:"si" },
-            { t:"Sesión 1: Plan de Vida", obj:"Metas personales para los próximos 2 años.", dyn:"¿Cuál es tu sueño profesional?", check:"ok" },
-            { t:"Sesión 2: Salud", obj:"Cuidado preventivo y nutrición infantil.", dyn:"¿Cuál es el alimento clave contra la anemia?", check:"hierro" },
-            { t:"Sesión 3: Autoestima", obj:"Fortalecimiento emocional y redes de apoyo.", dyn:"¿A quién acudes si necesitas ayuda?", check:"familia" },
-            { t:"Sesión 4: Autonomía", obj:"Herramientas para la independencia económica.", dyn:"¿Cómo puedes generar ingresos hoy?", check:"ok" }
+        t: "Prevención para Madres Adolescentes",
+        s: [
+            { n: "S0: Intro", obj: "Espacio seguro y objetivos del programa de prevención.", dyn: "¿Cuál es tu mayor meta personal?", ans: "ok" },
+            { n: "S1: Derechos", obj: "Conocimiento de los derechos fundamentales.", dyn: "¿Tienes derecho a seguir estudiando? (Si/No)", ans: "si" },
+            { n: "S2: Salud", obj: "Cuidado preventivo y nutrición.", dyn: "¿Cuál es el alimento clave contra la anemia?", ans: "hierro" },
+            { n: "S3: Proyecto", obj: "Diseño de un plan de vida a corto plazo.", dyn: "¿En qué te ves trabajando en 2 años?", ans: "ok" },
+            { n: "S4: Empoderamiento", obj: "Liderazgo femenino y autoestima.", dyn: "¿Te sientes capaz de lograr tus metas?", ans: "si" }
         ]
     },
     becas: {
-        titulo: "Guía de Becas",
-        sesiones: [
-            { t:"Sesión 0: Intro", obj:"Conociendo las oportunidades de estudio.", dyn:"¿Quieres estudiar?", check:"si" },
-            { t:"Sesión 1: Tipos de Becas", obj:"Becas estatales, privadas y de ONG.", dyn:"¿Cuál beca te interesa más?", check:"ok" },
-            { t:"Sesión 2: Requisitos", obj:"Documentación necesaria y notas mínimas.", dyn:"¿Qué documento es vital?", check:"dni" },
-            { t:"Sesión 3: Postulación", obj:"Cómo llenar formularios sin errores.", dyn:"¿Qué se pone en 'Motivación'?", check:"ok" },
-            { t:"Sesión 4: Entrevistas", obj:"Cómo presentarse ante un comité de becas.", dyn:"¿Cómo vas vestida a la entrevista?", check:"formal" }
+        t: "Curso de Explicación de Becas",
+        s: [
+            { n: "S0: Intro", obj: "Ruta de aprendizaje sobre oportunidades de estudio.", dyn: "¿Sabías que existen becas para madres?", ans: "si" },
+            { n: "S1: Tipos", obj: "Diferencia entre becas estatales y privadas.", dyn: "¿Cuál beca te interesa más?", ans: "ok" },
+            { n: "S2: Requisitos", obj: "Documentos necesarios para postular.", dyn: "¿Qué documento acredita tu identidad?", ans: "dni" },
+            { n: "S3: Postulación", obj: "Llenado de formularios y cartas de motivación.", dyn: "¿Por qué quieres la beca? (Escribe breve)", ans: "ok" },
+            { n: "S4: Entrevista", obj: "Preparación para el comité de selección.", dyn: "¿Cuál es tu mayor fortaleza académica?", ans: "ok" }
         ]
     },
     reforzamiento: {
-        titulo: "Reforzamiento Académico",
-        sesiones: [
-            { t:"Sesión 0: Intro", obj:"Prueba diagnóstica de nivelación.", dyn:"¿Cuánto es 15% de 100?", check:"15" },
-            { t:"Sesión 1: Mate Básica", obj:"Regla de tres y porcentajes para la vida.", dyn:"Si 2 kilos valen 10, ¿cuánto valen 5?", check:"25" },
-            { t:"Sesión 2: Verbal", obj:"Comprensión lectora de textos técnicos.", dyn:"¿Cuál es la idea principal del texto?", check:"ok" },
-            { t:"Sesión 3: Lógica", obj:"Razonamiento para exámenes de admisión.", dyn:"Continúa la serie: 2, 4, 8...", check:"16" },
-            { t:"Sesión 4: Repaso", obj:"Simulacro final de conocimientos.", dyn:"¿Lista para el examen?", check:"si" }
+        t: "Reforzamiento Matemático y Verbal",
+        s: [
+            { n: "S0: Intro", obj: "Evaluación diagnóstica y metas de nivelación.", dyn: "¿Cuánto es el 10% de 200?", ans: "20" },
+            { n: "S1: Mate Vida", obj: "Operaciones básicas aplicadas al mercado.", dyn: "Si 3kg valen S/12, ¿cuánto valen 5kg?", ans: "20" },
+            { n: "S2: Comprensión", obj: "Lectura crítica de textos y manuales.", dyn: "¿Cuál es el mensaje principal del texto?", ans: "ok" },
+            { n: "S3: Razonamiento", obj: "Lógica matemática y secuencias.", dyn: "Sigue la serie: 1, 3, 5, 7...", ans: "9" },
+            { n: "S4: Redacción", obj: "Cómo escribir informes y solicitudes claras.", dyn: "¿A quién va dirigida tu solicitud?", ans: "ok" }
+        ]
+    },
+    tecnologia: {
+        t: "Capacitación Tecnológica de Gestión",
+        s: [
+            { n: "S0: Intro", obj: "El celular como herramienta de productividad.", dyn: "¿Tienes instalado Google Calendar?", ans: "si" },
+            { n: "S1: Calendar", obj: "Agendar turnos de ollas y asambleas.", dyn: "Programa un evento para mañana a las 10am.", ans: "ok" },
+            { n: "S2: Gestión", obj: "Uso de plataformas para control de inventarios.", dyn: "¿Para qué sirve registrar digitalmente?", ans: "orden" },
+            { n: "S3: Comunicación", obj: "WhatsApp Business y listas de difusión.", dyn: "¿Cómo envías un mensaje a 20 personas a la vez?", ans: "difusion" },
+            { n: "S4: Seguridad", obj: "Cuidado de claves y datos personales.", dyn: "¿Debes compartir tu contraseña con extraños?", ans: "no" }
+        ]
+    },
+    procesos: {
+        t: "Capacitación en Procesos de Voluntariado",
+        s: [
+            { n: "S0: Intro", obj: "Entender el flujo de trabajo del voluntario en Junín.", dyn: "¿Cuál es la misión del voluntariado?", ans: "ayudar" },
+            { n: "S1: Logística", obj: "Proceso de recepción y entrega de donaciones.", dyn: "¿Qué haces primero al recibir un saco?", ans: "pesar" },
+            { n: "S2: Calidad", obj: "Estandarización de raciones y raciones justas.", dyn: "¿Cuántos gramos de proteína van por plato?", ans: "ok" },
+            { n: "S3: Reportes", obj: "Cómo informar incidencias al centro central.", dyn: "¿Cuándo se reporta un problema?", ans: "inmediato" },
+            { n: "S4: Ética", obj: "Código de conducta del voluntario.", dyn: "¿Cuál es el valor principal del voluntario?", ans: "servicio" }
         ]
     }
 };
 
-function loadCourse(key) {
-    const curso = cursosDB[key];
-    document.getElementById('course-title-display').innerText = curso.titulo;
-    const tabBar = document.getElementById('tab-bar');
-    const contentBox = document.getElementById('content-display');
-    tabBar.innerHTML = ""; contentBox.innerHTML = "";
+function openCourse(key) {
+    const course = data[key];
+    document.getElementById('course-name').innerText = course.t;
+    const tabContainer = document.getElementById('tab-container');
+    const contentContainer = document.getElementById('session-content');
+    
+    tabContainer.innerHTML = "";
+    contentContainer.innerHTML = "";
 
-    curso.sesiones.forEach((s, i) => {
-        const active = i === 0 ? 'active' : '';
-        tabBar.innerHTML += `<div class="session-tab ${active}" onclick="switchTab(event, '${key}-${i}')">${s.t}</div>`;
-        contentBox.innerHTML += `
-            <div id="${key}-${i}" class="session-content ${active}">
-                <span class="time-tag">60 MIN</span>
-                <div class="obj-card"><strong>OBJETIVO:</strong> ${s.obj}</div>
-                <div class="dinamica-box">
-                    <h3>🛠️ DINÁMICA</h3>
-                    <p>${s.dyn}</p>
-                    <input type="text" id="in-${key}-${i}" placeholder="Tu respuesta...">
-                    <button class="btn-check" onclick="validar('${key}', ${i}, '${s.check}')">Validar</button>
+    course.s.forEach((session, i) => {
+        const activeClass = i === 0 ? 'active' : '';
+        tabContainer.innerHTML += `<div class="tab ${activeClass}" onclick="showTab(event, '${key}-${i}')">${session.n}</div>`;
+        
+        contentContainer.innerHTML += `
+            <div id="${key}-${i}" class="view ${activeClass}">
+                <div class="info-box">
+                    <strong>OBJETIVO DE LA SESIÓN (60 MIN):</strong><br>
+                    ${session.obj}
+                </div>
+                <div class="dinamica">
+                    <h4>🕹️ DINÁMICA DE APRENDIZAJE</h4>
+                    <p>${session.dyn}</p>
+                    <input type="text" id="input-${key}-${i}" placeholder="Escribe tu respuesta aquí...">
+                    <button class="btn-check" onclick="validar('${key}', ${i}, '${session.ans}')">VALIDAR APRENDIZAJE</button>
                     <div id="feed-${key}-${i}" class="feedback"></div>
                 </div>
-            </div>`;
+            </div>
+        `;
     });
-    document.getElementById('main-dashboard').style.display = 'none';
+
+    document.getElementById('dashboard').style.display = 'none';
     document.getElementById('course-viewer').style.display = 'block';
 }
 
-function switchTab(e, id) {
-    document.querySelectorAll('.session-content').forEach(c => c.classList.remove('active'));
-    document.querySelectorAll('.session-tab').forEach(t => t.classList.remove('active'));
+function showTab(e, id) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     e.currentTarget.classList.add('active');
 }
 
 function closeCourse() {
-    document.getElementById('main-dashboard').style.display = 'block';
+    document.getElementById('dashboard').style.display = 'block';
     document.getElementById('course-viewer').style.display = 'none';
 }
 
-function validar(c, s, ans) {
-    const input = document.getElementById(`in-${c}-${s}`).value.toLowerCase();
-    const f = document.getElementById(`feed-${c}-${s}`);
-    f.style.display = "block";
-    if(input.includes(ans) || ans === 'ok') {
-        f.innerHTML = "¡Excelente! Sesión completada.";
-        f.style.background = "var(--verde)";
+function validar(course, index, correct) {
+    const input = document.getElementById(`input-${course}-${index}`).value.toLowerCase();
+    const feed = document.getElementById(`feed-${course}-${index}`);
+    feed.style.display = "block";
+    
+    if (input.includes(correct) || correct === 'ok') {
+        feed.innerText = "¡Excelente! Has comprendido el objetivo de esta sesión.";
+        feed.style.background = "var(--verde)";
+        feed.style.color = "white";
     } else {
-        f.innerHTML = "Revisa e intenta de nuevo.";
-        f.style.background = "#E74C3C";
+        feed.innerText = "Respuesta incorrecta. Revisa el objetivo e intenta de nuevo.";
+        feed.style.background = var(--rojo-claro);
+        feed.style.color = "white";
     }
 }
 </script>
