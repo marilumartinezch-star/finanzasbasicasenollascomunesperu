@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academia Junín 2026 - Especialización</title>
+    <title>Academia Ubuntu 2026 - Especialización Pro</title>
     <style>
         :root {
             --rojo-p: #8B0000;
@@ -48,7 +48,7 @@
         .lab-zone { background: #1e1e1e; color: #fff; padding: 30px; border-radius: 12px; margin-top: 30px; }
         .lab-zone h4 { color: var(--rojo-c); margin-top: 0; text-transform: uppercase; font-size: 1.1rem; }
         .lab-input { width: 100%; padding: 15px; margin: 15px 0; border-radius: 6px; border: none; background: #333; color: white; font-size: 1rem; box-sizing: border-box; }
-        .btn-check { background: var(--rojo-c); color: white; border: none; padding: 15px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .btn-check { background: var(--rojo-c); color: white; border: none; padding: 15px; width: 100%; border-radius: 12px; font-weight: bold; cursor: pointer; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -62,7 +62,7 @@
     </header>
 
     <div class="container">
-        <h2 class="section-title">Cursos de capacitación</h2>
+        <h2 class="section-title">Programas de Formación Proactiva</h2>
         <div class="course-grid" id="grid"></div>
     </div>
 </div>
@@ -79,69 +79,75 @@
 <script>
 const cursos = {
     finanzas: {
-        t: "Finanzas para Ollas Comunes",
-        d: "Gestión de costos, flujo de caja y transparencia financiera comunal.",
+        t: "Finanzas Estratégicas",
+        d: "Dominio de presupuestos complejos, auditoría y sostenibilidad económica.",
         s: [
-            { n: "S0: Intro", obj: "Reglas de transparencia.", cont: "Presentación de la ruta financiera. Compromiso ético con la comunidad.", tip: "La transparencia es la base de la confianza.", dyn: "Define 3 reglas para el manejo de caja." },
-            { n: "S1: Costos", obj: "Cálculo por ración.", cont: "Análisis de insumos, mermas y costos ocultos (gas, sal).", tip: "Lo que no se mide, no se puede ahorrar.", dyn: "Calcula el costo de 100 raciones con arroz a S/180." },
-            { n: "S2: Caja", obj: "Registro diario.", cont: "Libro de ingresos y egresos. Arqueo y conciliación de boletas.", tip: "Cuadra la caja cada día antes de irte a casa.", dyn: "Realiza un arqueo con ingreso de S/150 y gasto de S/45." },
-            { n: "S3: Compras", obj: "Gestión de proveedores.", cont: "Estrategias de compra por volumen y negociación mayorista.", tip: "Comprar por saco reduce el costo unitario un 15%.", dyn: "Diseña un plan de compras mensual optimizado." },
-            { n: "S4: Balances", obj: "Rendición de cuentas.", cont: "Cómo presentar el estado financiero en la asamblea de socios.", tip: "Usa pizarras públicas para que todos vean las cuentas.", dyn: "Dibuja tu pizarra de transparencia semanal." }
+            { n: "S0: Introducción", obj: "Contexto Ubuntu y Ética.", cont: "Presentación del curso y misión de la organización. Establecimiento de la 'Cultura de la Transparencia': el compromiso innegociable con el manejo de fondos comunitarios.", tip: "La ética financiera es el activo más valioso de una lideresa.", dyn: "Escribe 3 compromisos éticos para tu gestión este año." },
+            { n: "S1: Costos Unitarios", obj: "Ingeniería de menús.", cont: "Análisis técnico de insumos. Cálculo de costo ración neto vs. costo ración bruto (incluyendo mermas y combustibles).", tip: "Si no cuentas la sal y el aceite, tus cuentas nunca cuadrarán.", dyn: "Calcula el costo total para 120 platos considerando un 5% de merma." },
+            { n: "S2: Flujo de Caja", obj: "Control de liquidez.", cont: "Uso de herramientas de registro diario. Diferencia entre ingresos reales y compromisos de pago. Arqueo técnico.", tip: "Dinero que no se registra en el momento, es dinero que se pierde.", dyn: "Registra 5 movimientos de hoy y determina el saldo final." },
+            { n: "S3: Abastecimiento", obj: "Compras mayoristas.", cont: "Ciclos de precios en Junín. Negociación con proveedores y stock de seguridad para evitar compras de emergencia caras.", tip: "Comprar para el mes ahorra más que comprar para el día.", dyn: "Diseña un plan de compras mensual optimizando S/500 de presupuesto." },
+            { n: "S4: Auditoría Social", obj: "Rendición pública.", cont: "Metodologías para presentar balances a la asamblea. Visualización de datos mediante pizarras de transparencia.", tip: "La claridad elimina la sospecha y fortalece la unión.", dyn: "Crea el boceto de tu pizarra de transparencia para el próximo lunes." },
+            { n: "S5: Proyectos", obj: "Generación de ingresos.", cont: "Identificación de excedentes y reinversión para pequeños emprendimientos dentro de la organización.", tip: "Una organización sostenible es aquella que no solo gasta, sino que produce.", dyn: "Propón una idea de negocio que use los recursos de la olla." }
         ]
     },
     admin: {
-        t: "Administración y Liderazgo",
-        d: "Organización de equipos, manuales de funciones y resolución de conflictos.",
+        t: "Gestión Organizacional",
+        d: "Liderazgo técnico, optimización de procesos y manuales operativos.",
         s: [
-            { n: "S0: Intro", obj: "El rol de la organizadora.", cont: "Liderazgo de servicio y ética administrativa en la olla común.", tip: "Una líder facilita, no solo manda.", dyn: "Escribe tu misión como líder en 2 párrafos." },
-            { n: "S1: Roles", obj: "Organización de equipos.", cont: "Definición de perfiles: Cocina, Almacén, Tesorería y Bienestar.", tip: "Define tareas claras para evitar duplicidad.", dyn: "Asigna 4 tareas críticas a tus voluntarias." },
-            { n: "S2: Tiempo", obj: "Cronogramas operativos.", cont: "Optimización de turnos para evitar el agotamiento de las madres.", tip: "La rotación de turnos asegura la sostenibilidad.", dyn: "Crea el horario de la próxima semana." },
-            { n: "S3: Conflictos", obj: "Mediación asertiva.", cont: "Técnicas de comunicación no violenta y manejo de quejas.", tip: "Escucha el doble de lo que hablas ante un reclamo.", dyn: "Resuelve un caso de tardanza de una socia." },
-            { n: "S4: Plan 2026", obj: "Planificación estratégica.", cont: "Metas de crecimiento y búsqueda de aliados externos.", tip: "Mira tu olla como una institución del futuro.", dyn: "Define 2 metas para lograr en 6 meses." }
+            { n: "S0: Introducción", obj: "Liderazgo Ubuntu.", cont: "Presentación de la ruta administrativa. El concepto de Liderazgo de Servicio: cómo organizar para empoderar a otros.", tip: "Administrar es servir con orden y visión de futuro.", dyn: "Define tu estilo de liderazgo en una frase inspiradora." },
+            { n: "S1: Manual de Roles", obj: "Estructura funcional.", cont: "Creación de Manuales de Organización y Funciones (MOF) simplificados para voluntariado.", tip: "La confusión de tareas es la madre de todos los conflictos.", dyn: "Asigna 5 responsabilidades clave a 5 perfiles distintos." },
+            { n: "S2: Productividad", obj: "Gestión del tiempo.", cont: "Matriz de Eisenhower aplicada a la gestión social. Priorización de tareas urgentes vs. importantes.", tip: "Lo importante rara vez es urgente, y lo urgente rara vez es importante.", dyn: "Clasifica 6 tareas de tu día en la matriz de prioridades." },
+            { n: "S3: Comunicación", obj: "Asertividad y Redes.", cont: "Canales de comunicación interna. Manejo de grupos de WhatsApp profesionales y actas de acuerdos.", tip: "Acuerdo que no se escribe, acuerdo que no existe.", dyn: "Redacta el acta de la última decisión tomada en tu grupo." },
+            { n: "S4: Conflictos", obj: "Negociación efectiva.", cont: "Técnicas de mediación comunitaria. Cómo convertir un problema en una oportunidad de mejora organizacional.", tip: "Ataca el proceso, no a la persona.", dyn: "Roleplay: ¿Cómo responderías a una crítica injusta en público?" },
+            { n: "S5: Institucionalidad", obj: "Formalización.", cont: "Pasos para la personería jurídica y registro en municipalidades. De grupo social a institución reconocida.", tip: "La formalidad abre las puertas a donaciones estatales e internacionales.", dyn: "Investiga 2 requisitos para registrar tu organización localmente." }
         ]
     },
     prevencion: {
-        t: "Desarrollo y Prevención",
-        d: "Empoderamiento, salud reproductiva y derechos para madres adolescentes.",
+        t: "Empoderamiento y Plan de Vida",
+        d: "Autocuidado, derechos ciudadanos y construcción de futuro profesional.",
         s: [
-            { n: "S0: Intro", obj: "Espacio de seguridad.", cont: "Presentación y pacto de confidencialidad en el grupo de Junín.", tip: "Tu historia es tu motor, no tu ancla.", dyn: "Escribe un sueño que quieras cumplir este año." },
-            { n: "S1: Salud", obj: "Autocuidado integral.", cont: "Nutrición para combatir la anemia y salud reproductiva.", tip: "Cuidarte a ti es la mejor forma de cuidar a tu hijo.", dyn: "Lista 3 alimentos locales ricos en hierro." },
-            { n: "S2: Derechos", obj: "Marco legal protector.", cont: "Derechos de la madre adolescente y acceso a la justicia.", tip: "Conocer la ley te hace libre de abusos.", dyn: "¿A qué número llamas ante una emergencia legal?" },
-            { n: "S3: Resiliencia", obj: "Fortalecimiento emocional.", cont: "Manejo de estrés y construcción de una autoestima sólida.", tip: "Eres más fuerte de lo que crees.", dyn: "Identifica 3 fortalezas que tengas hoy." },
-            { n: "S4: Vida", obj: "Plan de vida profesional.", cont: "Retorno a los estudios y metas de independencia económica.", tip: "Tu plan de vida es tu mapa al éxito.", dyn: "Dibuja tu ruta educativa para el 2026." }
+            { n: "S0: Introducción", obj: "Bienvenida y Redes.", cont: "Presentación del curso. La organización como red de soporte. Pacto de sororidad y crecimiento mutuo.", tip: "Tu crecimiento personal es el motor del cambio en Junín.", dyn: "¿Cuál es el principal valor que aportas a tu grupo?" },
+            { n: "S1: Salud Integral", obj: "Bienestar y Prevención.", cont: "Salud reproductiva, nutrición técnica y salud mental post-maternidad.", tip: "Tu cuerpo es tu primer territorio; cuídalo con conocimiento.", dyn: "Crea una minuta nutricional balanceada para ti esta semana." },
+            { n: "S2: Marco Legal", obj: "Derechos y Justicia.", cont: "Conocimiento de leyes de protección, procesos de filiación y pensiones alimenticias.", tip: "El conocimiento de tus derechos es tu mejor defensa.", dyn: "Identifica 2 instituciones de ayuda legal en tu zona." },
+            { n: "S3: Autoestima", obj: "Identidad y Resiliencia.", cont: "Técnicas de fortalecimiento emocional. Superación del estigma y construcción de identidad proactiva.", tip: "Tu pasado no determina tu techo; tu esfuerzo hoy sí.", dyn: "Escribe una carta a tu 'yo' del futuro describiendo tus logros." },
+            { n: "S4: Redes de Apoyo", obj: "Comunidad protectora.", cont: "Cómo identificar y fortalecer círculos de confianza. Prevención de la violencia de género.", tip: "Nadie triunfa sola; la fuerza está en la red.", dyn: "Mapea tu red de contactos seguros para emergencias." },
+            { n: "S5: Proyecto Vida", obj: "Metas y Carrera.", cont: "Metodología SMART para alcanzar objetivos educativos y laborales.", tip: "Un sueño sin fecha es solo un deseo; un sueño con fecha es una meta.", dyn: "Define tu meta educativa principal para diciembre 2026." }
         ]
     },
     becas: {
-        t: "Gestión de Becas",
-        d: "Preparación de expedientes y estrategias para ganar becas de estudio.",
+        t: "Estrategias de Postulación",
+        d: "Ruta técnica para ganar becas nacionales e internacionales.",
         s: [
-            { n: "S0: Intro", obj: "Mapa de becas.", cont: "Introducción a PRONABEC y oportunidades en la región.", tip: "La oportunidad llega a quien está listo.", dyn: "¿Qué carrera técnica te interesa postular?" },
-            { n: "S1: Perfil", obj: "Mérito y potencial.", cont: "Cómo resaltar tus notas y compromiso social en el expediente.", tip: "No pidas ayuda, demuestra que eres una inversión.", dyn: "Haz tu inventario de logros personales." },
-            { n: "S2: Carpeta", obj: "Documentación técnica.", cont: "Gestión de certificados, SISFOH y DNI sin errores.", tip: "El orden del expediente es tu primera nota.", dyn: "Revisa qué documentos te faltan hoy." },
-            { n: "S3: Carta", obj: "Redacción motivacional.", cont: "Cómo escribir una historia que impacte al jurado seleccionador.", tip: "Tu carta debe ser honesta, clara y ambiciosa.", dyn: "Escribe el inicio de tu carta de motivación." },
-            { n: "S4: Entrevista", obj: "Simulacro final.", cont: "Manejo de oratoria y lenguaje corporal ante un jurado.", tip: "La confianza nace de la preparación.", dyn: "Responde: ¿Cómo ayudarás a Junín con tu carrera?" }
+            { n: "S0: Introducción", obj: "Visión Educativa.", cont: "Presentación del curso. Análisis de la oferta educativa técnica y universitaria en el Perú actual.", tip: "La educación superior es el ascensor social más efectivo.", dyn: "Investiga qué carrera técnica tiene más demanda en Junín." },
+            { n: "S1: Oportunidades", obj: "Mapeo de Becas.", cont: "Análisis de PRONABEC, Beca 18, y becas de fundaciones privadas.", tip: "No postules a una, postula a todas las que encajen contigo.", dyn: "Compara los beneficios de 2 tipos de becas distintas." },
+            { n: "S2: El Expediente", obj: "Documentación Maestra.", cont: "Gestión de certificados, SISFOH, y acreditaciones socioeconómicas impecables.", tip: "Un error en el papel anula años de esfuerzo académico.", dyn: "Organiza tu checklist de documentos obligatorios." },
+            { n: "S3: Storytelling", obj: "Ensayos Motivacionales.", cont: "Técnicas de escritura narrativa para convencer a comités de selección.", tip: "Tu historia es única; aprende a contarla con orgullo y propósito.", dyn: "Escribe los primeros 3 párrafos de tu ensayo de postulación." },
+            { n: "S4: Pruebas Aptitud", obj: "Entrenamiento Lógico.", cont: "Simulacros de exámenes de aptitud académica específicos para becas.", tip: "La práctica constante vence al talento natural.", dyn: "Resuelve un test rápido de lógica de 10 preguntas." },
+            { n: "S5: Entrevista", obj: "Marketing Personal.", cont: "Simulacros de entrevistas con jurados. Lenguaje no verbal y seguridad discursiva.", tip: "Véndete como la solución que el país necesita.", dyn: "Graba o escribe tu respuesta a: '¿Por qué mereces esta beca?'" }
         ]
     },
     mate: {
-        t: "Razonamiento Matemático",
-        d: "Nivelación en aritmética, lógica y resolución de problemas para admisión.",
+        t: "Razonamiento Matemático Pro",
+        d: "Aritmética avanzada, lógica y álgebra aplicada para exámenes.",
         s: [
-            { n: "S0: Intro", obj: "Diagnóstico numérico.", cont: "Evaluación inicial y pérdida del miedo a los números.", tip: "Las matemáticas son un deporte: se aprenden practicando.", dyn: "Resuelve: 3x - 10 = 20." },
-            { n: "S1: Aritmética", obj: "Números para la vida.", cont: "Regla de tres, porcentajes y operaciones combinadas.", tip: "Domina el porcentaje y dominarás tus finanzas.", dyn: "Calcula el 18% de IGV de una compra de S/250." },
-            { n: "S2: Lógica", obj: "Secuencias y patrones.", cont: "Análisis de sucesiones y razonamiento abstracto.", tip: "Busca siempre el patrón antes de calcular.", dyn: "Sigue la serie: 2, 6, 12, 20..." },
-            { n: "S3: Problemas", obj: "Planteo de ecuaciones.", cont: "Cómo traducir el lenguaje verbal al lenguaje matemático.", tip: "Dibuja el problema si no lo entiendes al leerlo.", dyn: "Si el doble de una edad es 40, ¿qué edad es?" },
-            { n: "S4: Simulacro", obj: "Examen de velocidad.", cont: "Técnicas para resolver 20 ejercicios en 20 minutos.", tip: "No te estanques en una pregunta difícil.", dyn: "Resuelve 5 retos de admisión en 5 minutos." }
+            { n: "S0: Introducción", obj: "Mentalidad Numérica.", cont: "Introducción a la lógica matemática en la organización. El miedo a los números como barrera a derribar.", tip: "La matemática no es difícil, es solo un lenguaje nuevo.", dyn: "Resuelve un acertijo de lógica básica para calentar." },
+            { n: "S1: Razonamiento", obj: "Aritmética Lógica.", cont: "Regla de tres, porcentajes, fracciones y su aplicación en problemas de gestión.", tip: "Entender el porcentaje es entender el mundo económico.", dyn: "Si un costo sube el 15% y luego baja el 10%, ¿cuál es el cambio final?" },
+            { n: "S2: Álgebra Básica", obj: "Ecuaciones de Vida.", cont: "Planteo y resolución de ecuaciones de primer grado aplicadas.", tip: "Una ecuación es solo una balanza que busca equilibrio.", dyn: "Plantea la ecuación para un presupuesto con 2 variables fijas." },
+            { n: "S3: Geometría", obj: "Espacio y Medida.", cont: "Áreas, perímetros y volúmenes aplicados a logística y almacén.", tip: "Optimizar el espacio es optimizar el dinero.", dyn: "¿Cuántas cajas de 1m³ caben en un almacén de 12m² x 3m?" },
+            { n: "S4: Sucesiones", obj: "Patrones Lógicos.", cont: "Análisis de series numéricas, alfabéticas y gráficas.", tip: "El cerebro humano está diseñado para encontrar patrones.", dyn: "Identifica el patrón en la serie: 1, 4, 9, 16, 25..." },
+            { n: "S5: Simulacro Admisión", obj: "Velocidad y Precisión.", cont: "Técnicas de descarte y gestión de tiempo en exámenes tipo admisión.", tip: "No se trata de saberlo todo, sino de responder bien lo que sabes.", dyn: "Resuelve 15 ejercicios de nivel intermedio en 15 minutos." }
         ]
     },
     verbal: {
-        t: "Razonamiento Verbal",
-        d: "Comprensión lectora, vocabulario crítico y redacción de informes.",
+        t: "Comunicación y R. Verbal",
+        d: "Comprensión crítica, oratoria y redacción de documentos técnicos.",
         s: [
-            { n: "S0: Intro", obj: "Diagnóstico lector.", cont: "Evaluación de velocidad y nivel de comprensión.", tip: "Leer abre mentes y puertas profesionales.", dyn: "Lee un párrafo y dinos la idea principal." },
-            { n: "S1: Comprensión", obj: "Análisis de textos.", cont: "Identificación de tesis, argumentos y conclusiones.", tip: "Subraya las palabras clave de cada párrafo.", dyn: "¿Cuál es el propósito del autor en este texto?" },
-            { n: "S2: Vocabulario", obj: "Precisión léxica.", cont: "Sinónimos, antónimos y términos excluidos en contexto.", tip: "Usa palabras precisas para comunicar ideas claras.", dyn: "Escribe 3 sinónimos de la palabra 'Liderazgo'." },
-            { n: "S3: Analogías", obj: "Relaciones lógicas.", cont: "Vinculación de conceptos y lógica verbal avanzada.", tip: "La analogía es la base del pensamiento comparativo.", dyn: "Olla es a cocina como libro es a..." },
-            { n: "S4: Redacción", obj: "Escritura técnica.", cont: "Cómo redactar solicitudes e informes con ortografía impecable.", tip: "Escribir bien es una señal de respeto al lector.", dyn: "Redacta una solicitud breve para una donación." }
+            { n: "S0: Introducción", obj: "El Poder de la Palabra.", cont: "Presentación del curso. La comunicación como herramienta de liderazgo comunitario.", tip: "Quien comunica bien, lidera mejor.", dyn: "Escribe un breve discurso de bienvenida para tu grupo." },
+            { n: "S1: Análisis Texto", obj: "Comprensión Lectora.", cont: "Identificación de ideas principales, secundarias e intención del autor en textos complejos.", tip: "Lee entre líneas; ahí está el verdadero mensaje.", dyn: "Extrae 3 conclusiones de un artículo de opinión local." },
+            { n: "S2: Léxico Técnico", obj: "Vocabulario Académico.", cont: "Uso de sinónimos, antónimos y precisión léxica en contextos profesionales.", tip: "La precisión en el lenguaje evita malentendidos operativos.", dyn: "Sustituye 5 palabras comunes por términos más profesionales." },
+            { n: "S3: Lógica Verbal", obj: "Analogías y Coherencia.", cont: "Relaciones lógicas entre conceptos. Ordenamiento de oraciones y conectores lógicos.", tip: "Un pensamiento ordenado produce un texto ordenado.", dyn: "Completa 10 analogías de nivel pre-universitario." },
+            { n: "S4: Redacción Pro", obj: "Documentos de Gestión.", cont: "Elaboración de solicitudes, actas, informes y correos corporativos.", tip: "Tu escritura es tu carta de presentación profesional.", dyn: "Redacta una solicitud formal de apoyo para la municipalidad." },
+            { n: "S5: Oratoria Social", obj: "Discurso Público.", cont: "Técnicas de voz, dicción y manejo de audiencias en asambleas.", tip: "La seguridad al hablar se entrena; no es un don, es una técnica.", dyn: "Prepara una exposición de 2 minutos sobre un tema de tu curso." }
         ]
     }
 };
@@ -152,10 +158,10 @@ function init() {
         const c = cursos[key];
         grid.innerHTML += `
             <div class="card">
-                <span class="sessions-badge">1 INTRO + 4 TÉCNICAS</span>
+                <span class="sessions-badge">6 SESIONES CERTIFICADAS</span>
                 <h3>${c.t}</h3>
                 <p>${c.d}</p>
-                <button class="btn-open" onclick="openCourse('${key}')">Iniciar Curso</button>
+                <button class="btn-open" onclick="openCourse('${key}')">Acceder al Módulo</button>
             </div>
         `;
     }
@@ -179,16 +185,16 @@ function showSes(key, idx) {
     const content = document.getElementById('v-content');
     content.innerHTML = `
         <div class="lesson-box">
-            <h2 style="color:var(--rojo-p); margin-top:0;">${s.n}: Desarrollo Experto</h2>
-            <p><strong>OBJETIVO:</strong> ${s.obj}</p>
+            <h2 style="color:var(--rojo-p); margin-top:0;">${s.n}: Sesión Especializada</h2>
+            <p><strong>OBJETIVO TÉCNICO:</strong> ${s.obj}</p>
             <p style="font-size:1.1rem; line-height:1.7;">${s.cont}</p>
-            <div class="expert-tip"><strong>💡 CONSEJO DEL EXPERTO:</strong> ${s.tip}</div>
+            <div class="expert-tip"><strong>💡 PERSPECTIVA ESTRATÉGICA:</strong> ${s.tip}</div>
             
             <div class="lab-zone">
-                <h4>🕹️ LABORATORIO INTERACTIVO (60 MIN)</h4>
+                <h4>🕹️ LABORATORIO DE APLICACIÓN PRÁCTICA (60 MIN)</h4>
                 <p>${s.dyn}</p>
-                <textarea class="lab-input" placeholder="Ingresa tu respuesta o análisis técnico..." rows="3"></textarea>
-                <button class="btn-check" onclick="alert('Competencia registrada en el sistema Junín 2026')">VALIDAR SESIÓN</button>
+                <textarea class="lab-input" placeholder="Desarrolle su respuesta técnica aquí..." rows="4"></textarea>
+                <button class="btn-check" onclick="alert('Competencia registrada. Progreso actualizado en la Red Ubuntu.')">REGISTRAR AVANCE</button>
             </div>
         </div>
     `;
