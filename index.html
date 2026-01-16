@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Finanzas Básicas - Ollas Comunes</title>
+    <style>
+        :root {
+            --verde-bosque: #1B4332;
+            --dorado-arena: #D4AF37;
+            --blanco: #ffffff;
+            --gris-claro: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: var(--gris-claro);
+        }
+
+        header {
+            background-color: var(--verde-bosque);
+            color: var(--dorado-arena);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 5px solid var(--dorado-arena);
+        }
+
+        .motto {
+            font-style: italic;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        nav {
+            background: #fff;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--verde-bosque);
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: var(--dorado-arena);
+            color: white;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--verde-bosque);
+            border-left: 5px solid var(--dorado-arena);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .session-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .rules-box {
+            background-color: #e9f5ee;
+            border: 2px dashed var(--verde-bosque);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--verde-bosque);
+            color: white;
+        }
+
+        .badge {
+            background-color: var(--dorado-arena);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--verde-bosque);
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Gestión Financiera para Ollas Comunes</h1>
+    <span class="motto">"Cosechando libertad, sembrando estabilidad"</span>
+</header>
+
+<nav>
+    <a href="#intro">Sesión 0</a>
+    <a href="#s1">Sesión 1</a>
+    <a href="#s2">Sesión 2</a>
+    <a href="#s3">Sesión 3</a>
+    <a href="#s4">Sesión 4</a>
+</nav>
+
+<div class="container">
+    
+    <section id="intro">
+        <h2>Sesión 0: Introducción al Futuro</h2>
+        <p><strong>Objetivo:</strong> Presentar la ruta de aprendizaje y establecer las bases de trabajo.</p>
+        <p>Bienvenidos al curso de fundamentos básicos. Este programa de 4 sesiones ha sido diseñado para empoderar a los jóvenes líderes en la gestión de recursos comunitarios.</p>
+        
+        <div class="rules-box">
+            <h3>🤝 Reglas de Coexistencia</h3>
+            <ul>
+                <li><strong>Escucha Activa:</strong> Respeto total al compañero.</li>
+                <li><strong>Puntualidad:</strong> 90 minutos de enfoque total.</li>
+                <li><strong>Transparencia:</strong> Cuentas claras, comunidad unida.</li>
+                <li><strong>Colaboración:</strong> Aprendemos juntos, crecemos juntos.</li>
+            </ul>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="s1">
+        <h2>Sesión 1: El Corazón de la Olla (Ingresos y Egresos)</h2>
+        <span class="badge">Teórico - Práctico</span>
+        <p>Aprenderemos a registrar cada sol que entra y sale de la organización.</p>
+        <ul>
+            <li><strong>Teoría:</strong> Definición de flujo de caja y tipos de gastos (Fijos vs. Variables).</li>
+            <li><strong>Práctica:</strong> Elaboración del libro de caja diario.</li>
+        </ul>
+    </section>
+
+    <section id="s2">
+        <h2>Sesión 2: Compras Inteligentes y Ahorro</h2>
+        <span class="badge">Teórico - Práctico</span>
+        <p>¿Cómo hacer que el dinero rinda más en el mercado?</p>
+        <ul>
+            <li><strong>Teoría:</strong> Economía de escala (compra mayorista) y fondo de reserva.</li>
+            <li><strong>Práctica:</strong> Comparativa de precios y presupuesto semanal optimizado.</li>
+        </ul>
+    </section>
+
+    <section id="s3">
+        <h2>Sesión 3: Transparencia y Rendición de Cuentas</h2>
+        <span class="badge">Teórico - Práctico</span>
+        <p>La base de la confianza es que todos sepan cómo se usa el dinero.</p>
+        <ul>
+            <li><strong>Teoría:</strong> Ética financiera y elaboración de reportes para la asamblea.</li>
+            <li><strong>Práctica:</strong> Diseño de un mural de transparencia comunitario.</li>
+        </ul>
+    </section>
+
+    <section id="s4">
+        <h2>Sesión 4: Emprendimiento y Sostenibilidad</h2>
+        <span class="badge">Teórico - Práctico</span>
+        <p>Mirando hacia el futuro: ¿Cómo generar ingresos propios?</p>
+        <ul>
+            <li><strong>Teoría:</strong> Conceptos básicos de autogestión y proyectos productivos.</li>
+            <li><strong>Práctica:</strong> Plan de acción para un pequeño proyecto de generación de recursos.</li>
+        </ul>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 - Programa de Fortalecimiento Comunitario</p>
+    <p><em>Profesionalizando el servicio al prójimo.</em></p>
+</footer>
+
+</body>
+</html>
