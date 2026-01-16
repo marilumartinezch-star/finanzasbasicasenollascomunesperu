@@ -3,252 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMS Junín - Experticia Comunal</title>
+    <title>Academia Junín 2026 - Cursos de Formación</title>
     <style>
         :root {
             --rojo-p: #8B0000;
             --rojo-c: #FF3232;
             --oscuro: #1A1A1A;
-            --gris-f: #F0F2F5;
+            --gris-f: #F8F9FA;
             --blanco: #FFFFFF;
+            --dorado: #D4AF37;
         }
 
         body { font-family: 'Inter', 'Segoe UI', sans-serif; margin: 0; background: var(--gris-f); color: #2D3436; }
 
         /* --- DASHBOARD --- */
-        header { background: linear-gradient(135deg, var(--rojo-p), var(--rojo-c)); color: white; padding: 40px 20px; text-align: center; border-bottom: 6px solid #5d0000; }
-        .motto { font-style: italic; opacity: 0.85; display: block; margin-top: 10px; font-size: 0.9rem; letter-spacing: 1px; }
+        header { background: linear-gradient(135deg, var(--rojo-p), var(--rojo-c)); color: white; padding: 50px 20px; text-align: center; border-bottom: 8px solid var(--oscuro); }
+        .motto { font-style: italic; opacity: 0.9; display: block; margin-top: 15px; font-size: 1rem; letter-spacing: 1.5px; }
         
-        .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
-        .section-header { border-left: 6px solid var(--rojo-p); padding-left: 15px; margin: 40px 0 20px; color: var(--rojo-p); text-transform: uppercase; letter-spacing: 2px; font-size: 1.4rem; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-header h2 { color: var(--rojo-p); text-transform: uppercase; letter-spacing: 3px; font-size: 1.8rem; margin-bottom: 10px; }
+        .line { width: 60px; height: 4px; background: var(--rojo-c); margin: 0 auto; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         
-        .card { background: var(--blanco); border-radius: 15px; padding: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid #eee; position: relative; overflow: hidden; }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(139,0,0,0.15); border-color: var(--rojo-c); }
-        .card::after { content: ''; position: absolute; top: 0; right: 0; width: 40px; height: 40px; background: rgba(139,0,0,0.05); border-radius: 0 0 0 100%; }
-        .card h3 { margin: 0 0 12px; color: var(--oscuro); font-size: 1.25rem; }
-        .card p { font-size: 0.9rem; color: #636e72; margin-bottom: 20px; line-height: 1.5; }
-        .btn-start { background: var(--rojo-p); color: white; padding: 10px 20px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; font-size: 0.85rem; width: 100%; transition: 0.3s; }
-        .btn-start:hover { background: var(--rojo-c); }
+        .course-card { background: var(--blanco); border-radius: 20px; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.4s ease; border: 1px solid #eee; position: relative; }
+        .course-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(139,0,0,0.15); border-color: var(--rojo-p); }
+        .course-card h3 { margin: 0 0 15px; color: var(--oscuro); font-size: 1.4rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; }
+        .course-card p { font-size: 0.95rem; color: #636e72; margin-bottom: 25px; line-height: 1.6; }
+        .course-meta { font-size: 0.75rem; font-weight: bold; color: var(--rojo-p); text-transform: uppercase; margin-bottom: 10px; display: block; }
+        
+        .btn-enter { background: var(--oscuro); color: white; padding: 12px 25px; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; letter-spacing: 1px; }
+        .btn-enter:hover { background: var(--rojo-p); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
         /* --- LEARNING INTERFACE --- */
         #viewer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--blanco); z-index: 2000; overflow-y: auto; }
-        .v-nav { background: var(--oscuro); color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 2100; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        .tabs { display: flex; background: #f8f9fa; border-bottom: 4px solid var(--rojo-p); overflow-x: auto; position: sticky; top: 60px; z-index: 2000; }
-        .tab { padding: 18px 25px; cursor: pointer; font-weight: bold; font-size: 0.8rem; color: #636e72; min-width: 140px; text-align: center; flex: 1; transition: 0.3s; border-right: 1px solid #eee; }
+        .v-header { background: var(--oscuro); color: white; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 2100; }
+        
+        .tab-bar { display: flex; background: #f1f1f1; border-bottom: 4px solid var(--rojo-p); overflow-x: auto; position: sticky; top: 75px; z-index: 2000; }
+        .tab { padding: 20px; cursor: pointer; font-weight: bold; font-size: 0.85rem; color: #555; flex: 1; text-align: center; border-right: 1px solid #ddd; transition: 0.3s; min-width: 150px; }
         .tab.active { background: var(--rojo-p); color: white; }
 
-        .session-content { max-width: 900px; margin: 50px auto; padding: 0 25px; animation: slideUp 0.4s ease-out; }
-        .expert-theory { background: #fff; border: 2px solid #eee; padding: 35px; border-radius: 20px; margin-bottom: 40px; position: relative; }
-        .expert-theory::before { content: "CONTENIDO EXPERTO"; position: absolute; top: -12px; left: 20px; background: var(--rojo-p); color: white; padding: 4px 12px; font-size: 0.7rem; border-radius: 4px; font-weight: bold; }
-        .expert-tip { background: #fff3f3; border-left: 6px solid var(--rojo-c); padding: 20px; margin: 25px 0; border-radius: 0 10px 10px 0; font-style: italic; color: #8b0000; }
+        .content-area { max-width: 850px; margin: 60px auto; padding: 0 25px; animation: fadeIn 0.5s ease; }
+        .lesson-card { background: #fff; border: 1px solid #e0e0e0; padding: 45px; border-radius: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.02); }
+        .expert-badge { display: inline-block; background: var(--rojo-p); color: white; padding: 5px 15px; border-radius: 5px; font-size: 0.7rem; font-weight: bold; margin-bottom: 20px; }
         
-        .interactive-lab { background: var(--oscuro); color: white; padding: 40px; border-radius: 25px; border: 4px solid var(--rojo-c); }
-        .interactive-lab h4 { color: var(--rojo-c); margin: 0 0 20px 0; font-size: 1.4rem; text-transform: uppercase; }
-        .input-box { background: #2d2d2d; border: 1px solid #444; border-radius: 10px; padding: 20px; width: 100%; color: white; font-size: 1rem; margin: 20px 0; box-sizing: border-box; }
-        .btn-action { background: var(--rojo-c); color: white; border: none; padding: 18px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem; text-transform: uppercase; transition: 0.3s; }
-        .btn-action:hover { background: #ff5e5e; transform: scale(1.02); }
+        .theory-text { font-size: 1.15rem; line-height: 1.8; color: #2d3436; margin-bottom: 30px; }
+        .expert-insight { background: #fff9e6; border-left: 6px solid var(--dorado); padding: 25px; margin: 30px 0; border-radius: 0 15px 15px 0; color: #7f6a00; font-style: italic; }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .interactive-zone { background: var(--oscuro); color: white; padding: 45px; border-radius: 30px; margin-top: 50px; border: 2px solid var(--rojo-c); }
+        .interactive-zone h4 { color: var(--rojo-c); margin: 0 0 20px 0; font-size: 1.5rem; text-transform: uppercase; }
+        .answer-input { width: 100%; padding: 20px; background: #2d2d2d; border: 1px solid #444; border-radius: 12px; color: white; font-size: 1.1rem; margin: 25px 0; box-sizing: border-box; }
+        .btn-validate { background: var(--rojo-c); color: white; border: none; padding: 20px; width: 100%; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
+        .btn-validate:hover { background: #ff4d4d; transform: scale(1.02); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
 <div id="dashboard">
     <header>
-        <h1>PROYECTO JUNÍN 2026: ACADEMIA DE LIDERAZGO</h1>
+        <h1>PLATAFORMA ACADÉMICA JUNÍN 2026</h1>
         <span class="motto">"Cosechando libertad, sembrando estabilidad"</span>
     </header>
 
     <div class="container">
-        <h2 class="section-header">Cursos Académicos y de Formación</h2>
-        <div class="grid" id="grid-cursos"></div>
-
-        <h2 class="section-header">Capacitaciones para la Organización</h2>
-        <div class="grid" id="grid-capas"></div>
+        <div class="section-header">
+            <h2>Cursos de Capacitación Profesional</h2>
+            <div class="line"></div>
+        </div>
+        
+        <div class="course-grid" id="course-grid"></div>
     </div>
 </div>
 
 <div id="viewer">
-    <div class="v-nav">
-        <h2 id="v-title" style="margin:0; font-size: 1.2rem; letter-spacing: 1px;">MÓDULO PROFESIONAL</h2>
-        <button onclick="closeViewer()" style="background:none; border:1px solid #fff; color:#fff; cursor:pointer; padding:5px 15px; border-radius:4px;">SALIR</button>
+    <div class="v-header">
+        <h2 id="v-course-title" style="margin:0; font-size: 1.3rem;">CURSO EXPERTO</h2>
+        <button onclick="exitCourse()" style="background:transparent; border:1px solid #fff; color:white; padding:8px 20px; border-radius:50px; cursor:pointer; font-weight:bold;">VOLVER AL PANEL</button>
     </div>
-    <div class="tabs" id="v-tabs"></div>
-    <div id="v-content" class="session-content"></div>
+    <div class="tab-bar" id="v-tabs"></div>
+    <div id="v-container" class="content-area"></div>
 </div>
 
 <script>
-const db = {
-    cursos: {
-        finanzas: {
-            title: "Finanzas Básicas: Ollas Comunes",
-            desc: "Dominio de costos ración, auditoría comunal y gestión de excedentes financieros.",
-            sesiones: [
-                { t: "S0: Intro", obj: "Reglas de transparencia financiera.", cont: "Presentación del curso. El dinero de la comunidad es sagrado: pacto de rendición pública de cuentas en Junín.", tip: "La transparencia no es una opción, es la herramienta que evita que la olla común se divida.", dyn: "Define los 3 valores que regirán tu caja este mes.", act: "validar" },
-                { t: "S1: Costos", obj: "Ingeniería de costos por plato.", cont: "Cálculo de costo directo (insumo) e indirecto (gas, transporte, condimentos). Manejo de merma en alimentos frescos.", tip: "Si no calculas el costo del gas y la sal, tu saldo real siempre estará en rojo.", dyn: "Calcula el costo de 100 platos si el gas sube 10% hoy.", act: "validar" },
-                { t: "S2: Registro", obj: "Sistemas de entrada y salida.", cont: "Uso técnico del cuaderno de caja. Arqueo diario de efectivo y conciliación con boletas físicas.", tip: "Gasto sin boleta o vale firmado, es gasto que la administradora asume como pérdida personal.", dyn: "Registra: Ingreso S/200, Compra Pollo S/85, Saldo?", act: "validar" },
-                { t: "S3: Ahorro", obj: "Estrategias de compra mayorista.", cont: "Ciclos de precios en el mercado de Junín. Fondos de reserva para reposición de ollas y mobiliario.", tip: "Comprar un saco de arroz ahorra un 20% vs comprar por kilo diariamente. Planifica.", dyn: "Propón un plan de ahorro de S/2 diarios. ¿En cuánto tiempo compras una olla nueva?", act: "validar" },
-                { t: "S4: Rendición", obj: "Liderazgo en la asamblea de cuentas.", cont: "Cómo comunicar finanzas a personas no técnicas. Uso de pizarras públicas y visualización de gastos.", tip: "Un error en la cuenta se corrige con la verdad inmediata, nunca ocultándolo.", dyn: "Dibuja tu pizarra de transparencia para el próximo lunes.", act: "validar" }
-            ]
-        },
-        admin: {
-            title: "Administración para Organizadoras",
-            desc: "Estructura organizacional, gestión de roles y liderazgo efectivo de base.",
-            sesiones: [
-                { t: "S0: Intro", obj: "Visión estratégica de la administradora.", cont: "La olla común como empresa social. El impacto de una buena gestión en la nutrición de Junín.", tip: "Tú no solo cocinas, tú gestionas el recurso más vital de tu vecindario.", dyn: "Define tu misión como administradora en 2 frases.", act: "validar" },
-                { t: "S1: Estructura", obj: "Diseño de organigrama funcional.", cont: "Definición de roles: Logística, Cocina, Tesorería y Bienestar. Creación de manuales de funciones simples.", tip: "Si todos son responsables de todo, nadie es responsable de nada. Delega con claridad.", dyn: "Asigna 4 tareas críticas a 4 socias diferentes.", act: "validar" },
-                { t: "S2: Tiempo", obj: "Gestión de cronogramas operativos.", cont: "Optimización de tiempos de producción. Cronogramas de rotación para evitar el agotamiento de las madres.", tip: "El tiempo es el recurso más caro. Una hora perdida en el mercado es una hora menos de descanso.", dyn: "Crea el horario de la próxima semana para 3 turnos.", act: "validar" },
-                { t: "S3: Conflictos", obj: "Mediación y negociación interna.", cont: "Psicología de la comunicación en grupos comunitarios. Cómo manejar quejas de beneficiarios y fricciones entre socias.", tip: "Ataca el problema, nunca a la persona. Escucha antes de juzgar.", dyn: "Caso: Una socia llega tarde siempre. ¿Cómo hablas con ella?", act: "validar" },
-                { t: "S4: Sostenibilidad", obj: "Plan de crecimiento organizacional.", cont: "Búsqueda de aliados estratégicos y formalización. De olla común a organización social de base sólida.", tip: "Piensa en grande: tu gestión de hoy es la base de un emprendimiento futuro.", dyn: "¿Qué otra actividad podría generar ingresos para tu olla?", act: "validar" }
-            ]
-        },
-        prevencion: {
-            title: "Prevención: Madres Adolescentes",
-            desc: "Empoderamiento personal, salud preventiva y redes de protección social.",
-            sesiones: [
-                { t: "S0: Intro", obj: "Construcción de red de apoyo.", cont: "Presentación del curso de 5 sesiones. El poder de la comunidad de madres en Junín. Reglas de confidencialidad.", tip: "No estás sola. Tu comunidad es tu escudo y tu motor de cambio.", dyn: "Identifica a 2 personas en quienes confías plenamente.", act: "validar" },
-                { t: "S1: Autocuidado", obj: "Salud física y mental preventiva.", cont: "Nutrición para la madre y el infante. Manejo del estrés post-parto y salud sexual reproductiva.", tip: "Para cuidar a otro, debes estar sana tú. El autocuidado no es egoísmo, es responsabilidad.", dyn: "Escribe 3 acciones de salud que harás por ti esta semana.", act: "validar" },
-                { t: "S2: Derechos", obj: "Marco legal de protección.", cont: "Derechos de la adolescente, leyes de pensión alimenticia y acceso a salud gratuita en la región.", tip: "El desconocimiento de la ley permite el abuso. Infórmate y actúa.", dyn: "¿A qué número llamas en caso de emergencia o violencia?", act: "validar" },
-                { t: "S3: Resiliencia", obj: "Fortalecimiento emocional.", cont: "Técnicas de inteligencia emocional y toma de decisiones bajo presión social. Superación de estigmas.", tip: "Tu pasado no define tu destino. Tus decisiones de hoy sí.", dyn: "Escribe una fortaleza tuya que nadie más conozca.", act: "validar" },
-                { t: "S4: Visión", obj: "Proyecto de vida y metas.", cont: "Cómo integrar la maternidad con el estudio y el trabajo. Metodología de metas SMART para madres adolescentes.", tip: "Un hijo es una razón para triunfar, no una excusa para detenerse.", dyn: "Dibuja tu vida en 5 años. ¿Qué estás haciendo?", act: "validar" }
-            ]
-        },
-        becas: {
-            title: "Guía Maestra de Becas",
-            desc: "Estrategias de postulación, análisis de convocatorias y expedientes ganadores.",
-            sesiones: [
-                { t: "S0: Intro", obj: "Mapa de oportunidades educativas.", cont: "Introducción a PRONABEC y becas privadas. La educación como escalera de ascenso social en Junín.", tip: "Hay miles de becas que se pierden porque nadie postula por miedo. Tú no serás esa persona.", dyn: "¿Qué carrera técnica o universitaria te apasiona?", act: "validar" },
-                { t: "S1: El Perfil", obj: "Identificación de potencial académico.", cont: "Cómo resaltar tus talentos. Requisitos de promedio y vulnerabilidad. Selección de la carrera correcta.", tip: "No elijas lo más fácil, elige lo que el mercado de Junín necesita y tú ames.", dyn: "Haz una lista de tus 3 mejores notas o habilidades.", act: "validar" },
-                { t: "S2: El Papeleo", obj: "Gestión impecable de documentos.", cont: "Recopilación de certificados, SISFOH, DNI y constancias. El orden de los documentos determina la elegibilidad.", tip: "Un expediente ordenado habla de una mente lista para estudiar.", dyn: "Checklist: ¿Qué documentos tienes listos hoy?", act: "validar" },
-                { t: "S3: Motivación", obj: "Redacción de cartas de intención.", cont: "Cómo contar tu historia para convencer a un comité. El equilibrio entre la necesidad y el mérito.", tip: "Tu carta debe inspirar, no dar lástima. Demuestra que eres una inversión para el país.", dyn: "Escribe el párrafo inicial de tu carta de motivación.", act: "validar" },
-                { t: "S4: La Entrevista", obj: "Simulacro de selección final.", cont: "Lenguaje corporal, manejo de preguntas difíciles y seguridad al hablar ante jurados evaluadores.", tip: "La seguridad viene de la preparación. Ensaya tu discurso hasta que sea parte de ti.", dyn: "Responde: ¿Por qué deberíamos darte la beca a ti?", act: "validar" }
-            ]
-        },
-        reforzamiento: {
-            title: "Reforzamiento: Mate y Verbal",
-            desc: "Nivelación para exámenes de admisión: Lógica, aritmética y comprensión lectora.",
-            sesiones: [
-                { t: "S0: Intro", obj: "Diagnóstico de competencias.", cont: "Evaluación diagnóstica. Identificación de brechas de aprendizaje. Plan de estudio intensivo de 4 semanas.", tip: "No importa cuánto sepas hoy, sino cuánto estés dispuesta a aprender mañana.", dyn: "Resuelve: Si 2x + 5 = 15, ¿cuánto vale x?", act: "validar" },
-                { t: "S1: Aritmética", obj: "Razonamiento numérico aplicado.", cont: "Porcentajes, regla de tres, fracciones y decimales. Resolución de problemas de la vida cotidiana y comercio.", tip: "Los números no mienten. Domínalos para que nadie te engañe con cuentas.", dyn: "Si un producto de S/80 tiene 15% de descuento, ¿cuánto pagas?", act: "validar" },
-                { t: "S2: Lectura", obj: "Comprensión técnica de textos.", cont: "Análisis de ideas principales, inferencias y propósito del autor. Lectura crítica de noticias y manuales.", tip: "Quien entiende lo que lee, es dueño de su propio aprendizaje.", dyn: "Resume este párrafo en 5 palabras clave.", act: "validar" },
-                { t: "S3: Lógica", obj: "Razonamiento abstracto.", cont: "Secuencias, analogías y lógica proposicional. Preparación para las preguntas de 'trampa' en exámenes.", tip: "La lógica es el sentido común entrenado. Piensa antes de marcar.", dyn: "Completa: Árbol es a Bosque como Soldado es a...", act: "validar" },
-                { t: "S4: El Examen", obj: "Técnicas de resolución bajo presión.", cont: "Simulacro de examen real. Manejo del tiempo (1 minuto por pregunta) y control de la ansiedad.", tip: "En el examen, cada segundo cuenta. Pasa a la siguiente si te trabas.", dyn: "Simulacro: Resuelve 5 preguntas en 5 minutos.", act: "validar" }
-            ]
-        }
+const academia = {
+    finanzas: {
+        title: "Finanzas Básicas para Ollas Comunes",
+        desc: "Gestión técnica de presupuestos, ingeniería de costos por ración y protocolos de auditoría social para lideresas de Junín.",
+        sessions: [
+            { t: "S0: Introducción", obj: "Pacto de transparencia y ruta técnica.", cont: "Bienvenida a la ruta de especialización financiera. En esta sesión 0 establecemos las reglas de convivencia y el compromiso ético con los fondos de la olla común.", tip: "La transparencia financiera es el cimiento de la paz comunitaria.", dyn: "Redacta el compromiso ético que firmarán los socios este mes.", act: "Validar" },
+            { t: "S1: Ingeniería de Costos", obj: "Cálculo preciso de ración.", cont: "Desglose de costos: Proteína, carbohidrato, vegetales + costos ocultos (gas, sal, transporte). Cálculo de la merma operativa en Junín.", tip: "Ignorar los costos ocultos es el error #1 que lleva a la quiebra a una organización social.", dyn: "Calcula el costo real de un plato si el arroz sube 20 centavos por kilo.", act: "Validar" },
+            { t: "S2: Registro de Caja", obj: "Flujo de efectivo diario.", cont: "Técnicas de registro de ingresos (cuotas/donaciones) y egresos comprobados. Elaboración de vales provisionales y arqueo de caja diario.", tip: "Caja que no se cierra a diario, es caja que genera dudas.", dyn: "Si inicias con S/60, vendes 50 platos a S/3 y pagas S/45 de insumos, ¿cuánto hay en caja?", act: "Validar" },
+            { t: "S3: Estrategia de Compras", obj: "Abastecimiento inteligente.", cont: "Análisis estacional de productos en Junín. Ventajas de la compra por volumen y negociación efectiva con proveedores mayoristas.", tip: "El ahorro real se hace en el mercado, no en la cocina.", dyn: "Diseña un plan de compra para 200 raciones optimizando S/400.", act: "Validar" },
+            { t: "S4: Rendición de Cuentas", obj: "Reportabilidad y transparencia.", cont: "Cómo presentar el balance semanal en asamblea. Uso de la pizarra pública y comunicación asertiva de excedentes o déficits.", tip: "Una comunidad informada es una comunidad que apoya tu gestión.", dyn: "Diseña el gráfico de gastos para la pizarra de transparencia de tu barrio.", act: "Validar" }
+        ]
     },
-    capacitaciones: {
-        tecnologia: {
-            title: "Tecnología y Productividad",
-            desc: "Herramientas de gestión: Google Calendar, Drive y Plataformas de Organización.",
-            sesiones: [
-                { t: "S0: Intro", obj: "Alfabetización digital comunitaria.", cont: "El celular como oficina móvil. Configuración de cuentas y seguridad básica en la red de Junín.", tip: "La tecnología no es un lujo, es una herramienta de ahorro y eficiencia.", dyn: "Crea tu correo profesional si no lo tienes.", act: "validar" },
-                { t: "S1: Calendar", obj: "Gestión del tiempo digital.", cont: "Uso de Google Calendar para turnos, asambleas y recordatorios de pagos de servicios de la olla.", tip: "Un recordatorio en el celular vale más que mil notas de papel perdidas.", dyn: "Agenda la asamblea del próximo mes con 2 recordatorios.", act: "validar" },
-                { t: "S2: Drive", obj: "Almacenamiento en la nube.", cont: "Cómo escanear boletas y guardar documentos importantes en la nube para auditorías rápidas.", tip: "Si se pierde el cuaderno, los datos en la nube te salvarán la gestión.", dyn: "Simula subir una foto de una boleta a una carpeta compartida.", act: "validar" },
-                { t: "S3: WhatsApp Biz", obj: "Comunicación profesional.", cont: "Uso de etiquetas, respuestas rápidas y catálogos para informar el menú del día a los socios.", tip: "Diferencia tu WhatsApp personal del de la organización. Profesionalismo ante todo.", dyn: "Crea una etiqueta para 'Socios Morosos' en tu simulación.", act: "validar" },
-                { t: "S4: Apps Gestión", obj: "Exploración de herramientas nuevas.", cont: "Introducción a plataformas de gestión de tareas y comunicación grupal efectiva (Slack/Trello básico).", tip: "Mantente actualizada. La tecnología cambia, tu capacidad de aprender no.", dyn: "¿Qué otra app crees que ayudaría a tu organización?", act: "validar" }
-            ]
-        },
-        procesos: {
-            title: "Procesos de Voluntariado",
-            desc: "Manual operativo: Estandarización, logística y control de calidad alimentaria.",
-            sesiones: [
-                { t: "S0: Intro", obj: "Cultura de la estandarización.", cont: "Por qué los procesos garantizan la justicia social. El manual de operaciones como guía maestra en Junín.", tip: "La calidad no es un accidente, es el resultado de seguir el proceso.", dyn: "¿Por qué es importante que todas cocinen igual?", act: "validar" },
-                { t: "S1: Logística", obj: "Gestión de entrada y salida.", cont: "Protocolo de recepción de donaciones: Pesado, control de calidad y registro en Kardex inmediato.", tip: "Insumo que no se pesa, es insumo que se pierde en la cuenta final.", dyn: "Llega una donación de pollo. Describe los pasos de recepción.", act: "validar" },
-                { t: "S2: Inocuidad", obj: "Seguridad alimentaria técnica.", cont: "Cadena de frío, desinfección química de vegetales y prevención de contaminación cruzada.", tip: "La salud de tus vecinos está en tus manos. La higiene es innegociable.", dyn: "Identifica 3 riesgos de contaminación en una cocina real.", act: "validar" },
-                { t: "S3: Raciones", obj: "Estandarización del servicio.", cont: "Uso de medidas exactas por grupo etario. Cómo garantizar que cada plato tenga la misma proteína y carbohidrato.", tip: "El cucharón medidor es el juez de la equidad en la olla común.", dyn: "Si tienes 40 litros, ¿cuántas raciones de 400ml salen?", act: "validar" },
-                { t: "S4: Reportes", obj: "Ciclo de mejora continua.", cont: "Llenado de reportes diarios de incidencias y consumo. Cómo retroalimentar al equipo de voluntariado.", tip: "Lo que no se reporta, no se mejora. Tu voz técnica es vital para el proyecto.", dyn: "Escribe el reporte de una incidencia (ej. se acabó el gas antes de tiempo).", act: "validar" }
-            ]
-        }
+    admin: {
+        title: "Administración para Organizadoras",
+        desc: "Estructura de roles, liderazgo de servicio y planificación estratégica para la sostenibilidad de la organización social.",
+        sessions: [
+            { t: "S0: Introducción", obj: "Perfil de la líder administradora.", cont: "Presentación del curso. El rol de la organizadora no es mandar, es facilitar los procesos para que la olla funcione como un reloj.", tip: "El liderazgo en Junín se basa en el ejemplo y el orden, no en el poder.", dyn: "Identifica 3 retos administrativos de tu olla común hoy mismo.", act: "Validar" },
+            { t: "S1: Diseño de Roles", obj: "Organigrama y funciones.", cont: "División de tareas: Almacén, Cocina, Tesorería y Bienestar. Creación de manuales de funciones para evitar duplicidad de tareas.", tip: "Donde todos mandan, nadie trabaja. El orden empieza por saber quién hace qué.", dyn: "Asigna roles a 5 voluntarias basándote en sus fortalezas.", act: "Validar" },
+            { t: "S2: Gestión del Tiempo", obj: "Cronogramas de alta eficiencia.", cont: "Técnicas de planificación semanal. Rotación de turnos de madres para evitar el 'burnout' y asegurar la continuidad operativa.", tip: "Una líder que no delega, termina por agotarse y abandonar el proyecto.", dyn: "Crea el cronograma de turnos para una semana de alta demanda.", act: "Validar" },
+            { t: "S3: Resolución de Conflictos", obj: "Mediación comunitaria.", cont: "Técnicas de comunicación no violenta. Cómo manejar reclamos de beneficiarios y fricciones entre el equipo de trabajo.", tip: "En una organización social, el conflicto es natural; la mala gestión del mismo es el problema.", dyn: "Propón una solución para una socia que no cumple con su turno de limpieza.", act: "Validar" },
+            { t: "S4: Visión y Futuro", obj: "Sostenibilidad a largo plazo.", cont: "Planificación de metas a 6 meses. Cómo buscar alianzas con municipios y ONGs para formalizar la organización.", tip: "No pienses solo en el almuerzo de hoy; proyecta la institución de mañana.", dyn: "Escribe 2 metas SMART para tu organización en este 2026.", act: "Validar" }
+        ]
+    },
+    prevencion: {
+        title: "Prevención para Madres Adolescentes",
+        desc: "Capacitación integral en derechos, salud reproductiva, empoderamiento emocional y plan de vida.",
+        sessions: [
+            { t: "S0: Introducción", obj: "Red de confianza y seguridad.", cont: "Sesión de apertura. Creación de un espacio seguro en Junín donde el respeto y la confidencialidad son los pilares de nuestra formación.", tip: "Tu voz tiene poder; aquí aprenderás a usarla para transformar tu vida.", dyn: "¿Qué esperas lograr personalmente al finalizar estas 5 sesiones?", act: "Validar" },
+            { t: "S1: Salud y Autocuidado", obj: "Bienestar físico y nutrición.", cont: "Conocimiento del cuerpo, salud sexual y reproductiva. Nutrición preventiva contra la anemia para la madre y el bebé.", tip: "Tu salud es tu activo más valioso; cuidarte es el primer paso para cuidar a tu hijo.", dyn: "Identifica 3 alimentos locales de Junín que fortalecen tu salud hoy.", act: "Validar" },
+            { t: "S2: Derechos y Ciudadanía", obj: "Marco legal y protección.", cont: "Leyes que protegen a la madre adolescente. Acceso a la justicia, pensión alimentaria y el derecho irrenunciable al estudio.", tip: "Conocer la ley es tener un escudo contra la injusticia.", dyn: "¿Qué instituciones de Junín protegen tus derechos como madre?", act: "Validar" },
+            { t: "S3: Fortalezas Emocionales", obj: "Resiliencia y autoestima.", cont: "Técnicas de manejo de emociones, superación del estigma social y construcción de una identidad fuerte más allá de la maternidad.", tip: "No eres una estadística, eres una líder en formación.", dyn: "Escribe 3 cosas de las que te sientas profundamente orgullosa hoy.", act: "Validar" },
+            { t: "S4: Proyecto de Vida", obj: "Planificación de carrera.", cont: "Cómo retomar estudios y planificar el futuro profesional. Equilibrio entre metas personales y responsabilidades maternas.", tip: "Un plan de vida es el mapa que te llevará a la independencia económica.", dyn: "Diseña tu plan de acción para volver a estudiar este año.", act: "Validar" }
+        ]
+    },
+    becas: {
+        title: "Estrategias para Becas de Estudio",
+        desc: "Curso técnico para identificar oportunidades, gestionar expedientes de postulación y ganar becas académicas.",
+        sessions: [
+            { t: "S0: Introducción", obj: "Exploración del sistema de becas.", cont: "Introducción a PRONABEC y fondos internacionales. Entender la educación superior como el motor de cambio para Junín.", tip: "La beca no llega a quien más la necesita, sino a quien mejor se prepara.", dyn: "¿Qué carrera técnica o profesional transformaría tu vida?", act: "Validar" },
+            { t: "S1: Perfil de Postulante", obj: "Análisis de méritos y fortalezas.", cont: "Cómo potenciar tus notas y actividades extracurriculares. Selección de la beca adecuada según tu perfil socioeconómico.", tip: "Cada beca tiene un 'cliente ideal'; ajusta tu perfil a sus requisitos.", dyn: "Haz un inventario de tus mejores logros académicos y sociales.", act: "Validar" },
+            { t: "S2: Gestión de Documentos", obj: "Expediente técnico perfecto.", cont: "Trámite de certificados, SISFOH y DNI. El orden y la veracidad de los documentos como filtro principal de selección.", tip: "Un documento olvidado es una beca perdida. Organiza tu carpeta digital.", dyn: "Checklist: ¿Qué documentos tienes y cuáles debes tramitar mañana?", act: "Validar" },
+            { t: "S3: Redacción Persuasiva", obj: "Carta de motivación ganadora.", cont: "Cómo escribir una historia de vida que impacte al jurado. Técnicas de redacción para demostrar potencial y compromiso social.", tip: "Tu carta debe demostrar que eres la mejor inversión para el país.", dyn: "Escribe el párrafo donde explicas por qué Junín necesita que tú estudies.", act: "Validar" },
+            { t: "S4: Entrevista de Selección", obj: "Simulacro y comunicación pro.", cont: "Manejo de lenguaje corporal, oratoria y respuestas a preguntas difíciles en un comité de selección de becas.", tip: "La seguridad en la entrevista se construye con práctica y honestidad.", dyn: "Responde: ¿Cuál es tu mayor debilidad y cómo la estás superando?", act: "Validar" }
+        ]
+    },
+    reforzamiento: {
+        title: "Reforzamiento Matemático y Verbal",
+        desc: "Nivelación intensiva en razonamiento lógico y comprensión lectora para el éxito académico y profesional.",
+        sessions: [
+            { t: "S0: Introducción", obj: "Evaluación de competencias.", cont: "Diagnóstico inicial de habilidades. Presentación de la ruta de nivelación: 2 semanas de razonamiento matemático y 2 de verbal.", tip: "El conocimiento es la única herramienta que nadie puede quitarte.", dyn: "Realiza el test de entrada de lógica de 5 minutos.", act: "Validar" },
+            { t: "S1: Razonamiento Aritmético", obj: "Matemática para la vida real.", cont: "Regla de tres, porcentajes, promedios y lógica financiera aplicada a problemas cotidianos y de gestión.", tip: "Si dominas los números, dominas las decisiones de tu organización.", dyn: "Si un saco de papas de S/90 tiene 12% de descuento, ¿cuánto pagas?", act: "Validar" },
+            { t: "S2: Comprensión Lectora", obj: "Análisis crítico de textos.", cont: "Identificación de ideas principales, inferencias y análisis de argumentos en textos científicos y sociales.", tip: "Leer con propósito es la clave para aprender cualquier oficio.", dyn: "Resume en 3 líneas el mensaje principal del manual de operaciones.", act: "Validar" },
+            { t: "S3: Habilidades Verbales", obj: "Lógica y vocabulario.", cont: "Analogías, sinónimos, antónimos y redacción de informes técnicos claros y profesionales.", tip: "Hablar con precisión te da autoridad profesional ante cualquier institución.", dyn: "Completa la analogía: Líder es a Guía como Olla es a...", act: "Validar" },
+            { t: "S4: Simulacro de Admisión", obj: "Entrenamiento bajo presión.", cont: "Simulacro final de examen de admisión tipo SENATI/SENCICO. Técnicas de gestión del tiempo y descarte de respuestas.", tip: "En un examen, la calma y la estrategia valen tanto como el conocimiento.", dyn: "Resuelve 10 ejercicios rápidos en 10 minutos sin errores.", act: "Validar" }
+        ]
     }
 };
 
-function renderDashboard() {
-    const gridCursos = document.getElementById('grid-cursos');
-    const gridCapas = document.getElementById('grid-capas');
-    
-    // Renderizar Cursos
-    for(let key in db.cursos) {
-        const c = db.cursos[key];
-        gridCursos.innerHTML += createCard(c, key, 'cursos');
-    }
-    
-    // Renderizar Capacitaciones
-    for(let key in db.capacitaciones) {
-        const c = db.capacitaciones[key];
-        gridCapas.innerHTML += createCard(c, key, 'capacitaciones');
+function init() {
+    const grid = document.getElementById('course-grid');
+    for (let key in academia) {
+        const c = academia[key];
+        grid.innerHTML += `
+            <div class="course-card">
+                <span class="course-meta">Módulo Certificado • 5 Sesiones</span>
+                <h3>${c.title}</h3>
+                <p>${c.desc}</p>
+                <button class="btn-enter" onclick="openCourse('${key}')">INICIAR FORMACIÓN</button>
+            </div>
+        `;
     }
 }
 
-function createCard(data, key, type) {
-    return `
-        <div class="card">
-            <h3>${data.title}</h3>
-            <p>${data.desc}</p>
-            <button class="btn-start" onclick="openModule('${type}', '${key}')">INGRESAR AL MÓDULO</button>
-        </div>
-    `;
-}
-
-function openModule(type, key) {
-    const mod = db[type][key];
-    document.getElementById('v-title').innerText = mod.title.toUpperCase();
+function openCourse(key) {
+    const c = academia[key];
+    document.getElementById('v-course-title').innerText = c.title.toUpperCase();
     const tabs = document.getElementById('v-tabs');
-    const content = document.getElementById('v-content');
-    
     tabs.innerHTML = "";
-    mod.sesiones.forEach((s, i) => {
-        tabs.innerHTML += `<div class="tab ${i===0?'active':''}" onclick="loadSession('${type}', '${key}', ${i})">${s.t}</div>`;
-    });
     
-    loadSession(type, key, 0);
+    c.sessions.forEach((s, i) => {
+        tabs.innerHTML += `<div class="tab ${i===0?'active':''}" onclick="loadSession('${key}', ${i})">${s.t}</div>`;
+    });
+
+    loadSession(key, 0);
     document.getElementById('viewer').style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
 
-function loadSession(type, key, idx) {
-    const s = db[type][key].sesiones[idx];
-    const content = document.getElementById('v-content');
+function loadSession(key, idx) {
+    const s = academia[key].sessions[idx];
+    const container = document.getElementById('v-container');
     
-    content.innerHTML = `
-        <div class="expert-theory">
-            <h2 style="color:var(--rojo-p); margin-top:0;">${s.t}: Contenido Maestro</h2>
-            <p><strong>OBJETIVO TÉCNICO:</strong> ${s.obj}</p>
-            <p style="font-size:1.1rem; line-height:1.6;">${s.cont}</p>
-            <div class="expert-tip">
-                <strong>💡 TIP DEL EXPERTO:</strong> ${s.tip}
+    container.innerHTML = `
+        <div class="lesson-card">
+            <span class="expert-badge">SESIÓN TÉCNICA - 60 MINUTOS</span>
+            <h2 style="margin-top:0; color:var(--rojo-p); font-size:2rem;">${s.t}</h2>
+            <p><strong>OBJETIVO DE APRENDIZAJE:</strong> ${s.obj}</p>
+            <div class="theory-text">${s.cont}</div>
+            <div class="expert-insight">
+                <strong>💡 PERSPECTIVA DEL EXPERTO:</strong> ${s.tip}
             </div>
-        </div>
-        
-        <div class="interactive-lab">
-            <h4>🕹️ LABORATORIO INTERACTIVO (60 MIN)</h4>
-            <p style="font-size:1.1rem; opacity:0.9;">${s.dyn}</p>
-            <textarea class="input-box" rows="4" placeholder="Escribe aquí tu análisis, cálculo o respuesta técnica..."></textarea>
-            <button class="btn-action" onclick="validateAction(${idx})">VALIDAR COMPETENCIA DE SESIÓN</button>
-            <div id="status-${idx}" style="margin-top:20px; display:none; text-align:center; font-weight:bold; color:var(--rojo-c); background:white; padding:15px; border-radius:10px;">
-                ¡COMPETENCIA VALIDADA EXITOSAMENTE!
+            
+            <div class="interactive-zone">
+                <h4>🕹️ LABORATORIO DE APLICACIÓN</h4>
+                <p style="font-size:1.1rem; opacity:0.9;">${s.dyn}</p>
+                <textarea class="answer-input" placeholder="Escribe tu análisis o respuesta técnica aquí..." rows="4"></textarea>
+                <button class="btn-validate" onclick="confirmSuccess(${idx})">VALIDAR COMPETENCIA DE SESIÓN</button>
+                <div id="status-${idx}" style="display:none; margin-top:20px; text-align:center; background:#27AE60; color:white; padding:15px; border-radius:10px; font-weight:bold;">
+                    ✓ COMPETENCIA REGISTRADA EXITOSAMENTE
+                </div>
             </div>
         </div>
     `;
-    
+
     document.querySelectorAll('.tab').forEach((t, i) => {
         t.classList.toggle('active', i === idx);
     });
 }
 
-function validateAction(idx) {
-    const status = document.getElementById(`status-${idx}`);
-    status.style.display = 'block';
-    setTimeout(() => { status.style.color = '#27AE60'; }, 100);
+function confirmSuccess(idx) {
+    const s = document.getElementById(`status-${idx}`);
+    s.style.display = 'block';
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
 
-function closeViewer() {
+function exitCourse() {
     document.getElementById('viewer').style.display = 'none';
     document.body.style.overflow = 'auto';
 }
 
-renderDashboard();
+init();
 </script>
+
 </body>
 </html>
